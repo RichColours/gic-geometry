@@ -23,13 +23,17 @@ class MutableConvexShape {
 
         } else {
 
-            if (numPoints <= 2) {
+            if (numPoints < 2) {
                 points.add(p)
                 true
 
             } else {
 
-                if (!Geometry.isConvexShape(Shape(points))) {
+                val pointListWithNewPoint = mutableListOf<Point>()
+                pointListWithNewPoint.addAll(this.points)
+                pointListWithNewPoint.add(p)
+
+                if (!Geometry.isConvexShape(Shape(pointListWithNewPoint))) {
                     false
 
                 } else {

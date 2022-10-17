@@ -213,4 +213,28 @@ class GeometryTest {
             )
         }
     }
+
+    @Test
+    fun testCheckTheThreePointStraightLineShape() {
+
+        val line1 = Line(Point(0, 0), Point(1, 1))
+        val line2 = Line(Point(1, 1), Point(2, 2))
+
+        val dir = junctionDirection(line1, line2)
+
+        assertEquals(Geometry.JunctionDirection.STRAIGHT, dir)
+
+    }
+
+    @Test
+    fun testIsConvexShapeForStraightThreePointLine() {
+
+        val p1 = Point(0, 0)
+        val p2 = Point(1, 1)
+        val p3 = Point(2, 2)
+
+        assertFalse(
+            Geometry.isConvexShape(Shape(listOf(p1, p2, p3)))
+        )
+    }
 }
